@@ -8,11 +8,11 @@ Most distro forum threads recommend turning off secure-boot to enable hibernatio
 
 Compiling a patched kernel is also recommended to some users in some forums, however, its just a chore to do for every kernel version, especially if you have a low-end hardware.
 
-Gemini was used to help in coding. (You can check out the source code ofcourse!)
+Gemini was used to help in coding. (You can check out the source code of course!)
 
 ## Tainted Kernel
 
-Loading this module will result in a `tainted` kernel.
+Loading this module will result in a `tainted` kernel. See [kernel docs](https://www.kernel.org/doc/html/v7.2/admin-guide/tainted-kernels.html#decoding-tainted-state-at-runtime)
 
 ```sh
 wget https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/plain/tools/debugging/kernel-chktaint
@@ -21,11 +21,11 @@ bash kernel-chktaint
 
 ## OS
 
-Tested with Fedora 44. Kernel 7.0.8. x86_64 machine. Should work with ARM machines, however it isn't tested.
+Tested with Fedora 44. Kernel 7.2.8. x86_64 machine. Should work with ARM machines, however it isn't tested.
 
 ## Prerequisites
 
-For security, I will assume you have set up hibernation in an encrypted swapfile/swap partition. (Ofcourse, without kernel lockdown/secure boot)
+For security, I will assume you have set up hibernation in an encrypted swapfile/swap partition. (Of course, without kernel lockdown/secure boot)
 You can refer to the [Arch wiki](https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate#Hibernation) or your distro's docs for more info on how to set it up.
 
 You now have to create and add your MOK to the shim :
