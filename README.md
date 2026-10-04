@@ -10,6 +10,15 @@ Compiling a patched kernel is also recommended to some users in some forums, how
 
 Gemini was used to help in coding. (You can check out the source code ofcourse!)
 
+## Tainted Kernel
+
+Loading this module will result in a `tainted` kernel.
+
+```sh
+wget https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/plain/tools/debugging/kernel-chktaint
+bash kernel-chktaint
+```
+
 ## OS
 
 Tested with Fedora 44. Kernel 7.0.8. x86_64 machine. Should work with ARM machines, however it isn't tested.
@@ -22,14 +31,17 @@ You can refer to the [Arch wiki](https://wiki.archlinux.org/title/Power_manageme
 You now have to create and add your MOK to the shim :
 
 Skip this step if you have a MOK key (NVIDIA users in some distros typically have them, if they use the proprietary drivers)
+
 ```
 sudo dkms generate_mok
 sudo mokutil --import /var/lib/dkms/mok.pub # Change this if dkms generated it elsewhere
 ```
+
 It will prompt you for a temporary password. Enter it.
 Reboot. It will boot into mokutil tool and Proceed to enroll your MOK Key as highlighted [here](https://docs.fedoraproject.org/en-US/quick-docs/mok-enrollment/#_enrolling_self_signing_key_after_reboot).
 
 Now you need to point DKMS to sign the module with your MOK key. In `/etc/dkms/framework.conf`, add/uncomment -
+
 ```
 mok_signing_key="/var/lib/dkms/mok.key" # Change these to point to your generated keys
 mok_certificate="/var/lib/dkms/mok.pub"
